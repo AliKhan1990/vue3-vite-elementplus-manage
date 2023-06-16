@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/-ESLint-4b32c3?logo=eslint&logoColor=white" />
     <img src="https://img.shields.io/badge/-Prettier-ef9421?logo=Prettier&logoColor=white" alt="Prettier">
     <img src="https://img.shields.io/badge/-pnpm-F69220?logo=pnpm&logoColor=white" />
-    <img src="https://img.shields.io/badge/-elementplus-89ddff?logo=elementplus&logoColor=white" />
+    <img src="https://img.shields.io/badge/-ElementPlus-89ddff?logo=elementplus&logoColor=white" />
     <img src="" alt="">
 </p>
 
