@@ -1,28 +1,84 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form"
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      status-icon>
+      <!-- 登录页面 -->
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item>
+      <!-- 用户名 -->
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" type="text"/>
+        <el-input placeholder="username" name="username" v-model="ruleForm.username" type="text" autocomplete="off"/>
       </el-form-item>
-      <el-form-item>
+      <!-- 密码输入 -->
+      <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" type="password"/>
+        <el-input placeholder="password" name="password" type="password" v-model="ruleForm.password"/>
       </el-form-item>
-      <el-button type="primary">登录</el-button>
+      <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
   </el-form>
   </div>
 </template>
 
-<script setup>
-import {} from 'vue'
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+import type { FormInstance, FormRules } from 'element-plus'
+
+const ruleFormRef = ref< FormInstance >()
+
+const ruleForm = reactive({
+  username: '',
+  password: ''
+})
+
+const validatePass = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    debugger
+    callback(new Error('Please input the password'))
+  } else {
+    if (ruleForm.password !== '') {
+      if (!ruleFormRef.value) return
+      ruleFormRef.value.validateField('password', () => null)
+    }
+    callback()
+  }
+}
+
+const rules = reactive<FormRules>({
+  username: [
+    { required: true, message: 'Please input Your Username', trigger: 'blur' }
+  ],
+  password: [
+    { validator: validatePass, trigger: 'blur' }
+  ]
+})
+
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
+
+const resetForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
+
 </script>
 
 <style lang="scss" scoped>
