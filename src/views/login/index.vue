@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
     <el-form class="login-form"
-      ref="ruleFormRef"
-      :model="ruleForm"
+      ref="loginFromRef"
+      :model="loginForm"
       :rules="rules"
       status-icon>
       <!-- 登录页面 -->
@@ -14,20 +14,20 @@
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" v-model="ruleForm.username" type="text" autocomplete="off"/>
+        <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off"/>
       </el-form-item>
       <!-- 密码输入 -->
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" :type="secInputType" v-model="ruleForm.password"/>
+        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password"/>
         <span class="show-pwd" @click="onChangePwdType">
           <svg-icon :icon="secInputType === 'password' ? 'eye' : 'eye-open'"/>
         </span>
       </el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
-      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
+      <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
+      <el-button @click="resetForm(loginFromRef)">重置</el-button>
   </el-form>
   </div>
 </template>
@@ -35,12 +35,17 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
 
-const ruleFormRef = ref< FormInstance >()
+// 登录动作处理
+const loading = ref(false)
+const loginFromRef = ref<FormInstance>()
+const store = useStore()
 
 const secInputType = ref('password')
 
-const ruleForm = reactive({
+const loginForm = reactive({
   username: '',
   password: ''
 })
@@ -49,9 +54,9 @@ const validatePass = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('Please input the password'))
   } else {
-    if (ruleForm.password !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('password', () => null)
+    if (loginForm.password !== '') {
+      if (!loginFromRef.value) return
+      loginFromRef.value.validateField('password', () => null)
     }
     callback()
   }
@@ -66,15 +71,25 @@ const rules = reactive<FormRules>({
   ]
 })
 
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid:any) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
+const handlerLogin = () => {
+  loginFromRef.value.validate(valid => {
+    if (!valid) return
+
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm)
+      .then(() => {
+        loading.value = false
+        // TODO: 登录后操作
+        ElMessage({
+          message: 'Congrats, this is a success message.',
+          type: 'success'
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        loading.value = false
+      })
   })
 }
 
