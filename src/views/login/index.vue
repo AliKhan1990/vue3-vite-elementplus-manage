@@ -21,7 +21,10 @@
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" type="password" v-model="ruleForm.password"/>
+        <el-input placeholder="password" name="password" :type="secInputType" v-model="ruleForm.password"/>
+        <span class="show-pwd" @click="onChangePwdType">
+          <svg-icon :icon="secInputType === 'password' ? 'eye' : 'eye-open'"/>
+        </span>
       </el-form-item>
       <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
       <el-button @click="resetForm(ruleFormRef)">重置</el-button>
@@ -35,6 +38,8 @@ import type { FormInstance, FormRules } from 'element-plus'
 
 const ruleFormRef = ref< FormInstance >()
 
+const secInputType = ref('password')
+
 const ruleForm = reactive({
   username: '',
   password: ''
@@ -42,7 +47,6 @@ const ruleForm = reactive({
 
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    debugger
     callback(new Error('Please input the password'))
   } else {
     if (ruleForm.password !== '') {
@@ -64,7 +68,7 @@ const rules = reactive<FormRules>({
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate((valid:any) => {
     if (valid) {
       console.log('submit!')
     } else {
@@ -77,6 +81,15 @@ const submitForm = (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
+}
+
+// 点击切换看见图标及类型
+const onChangePwdType = () => {
+  if (secInputType.value === 'password') {
+    secInputType.value = 'text'
+  } else {
+    secInputType.value = 'password'
+  }
 }
 
 </script>
