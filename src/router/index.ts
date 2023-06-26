@@ -7,6 +7,15 @@ const publicRoutes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue')
+  },
+  {
+    path: '/home',
+    name: 'Layout',
+    component: () => import('@/layout/index.vue')
+  },
+  {
+    path: '',
+    redirect: '/home'
   }
   // {
   //   path: '/about',

@@ -2,6 +2,7 @@ import { login } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem } from '@/utils/storage.js'
 import { TOKEN } from '@/constant'
+import router from '@/router'
 
 export default {
   namespaced: true,
@@ -24,6 +25,7 @@ export default {
         })
           .then(data => {
             this.commit('user/setToken', data.token)
+            router.push('layout')
             resolve(data)
           })
           .catch(err => {
