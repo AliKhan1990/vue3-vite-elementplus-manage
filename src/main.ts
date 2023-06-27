@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import installElementPlus from './plugins/element'
-import '@/styles/index.css'
+import '@/styles/index.scss'
 // 导入 svgIcon
 import installIcons from '@/icons'
 import './permission.js'

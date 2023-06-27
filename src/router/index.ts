@@ -9,13 +9,9 @@ const publicRoutes: Array<RouteRecordRaw> = [
     component: () => import('@/views/login/index.vue')
   },
   {
-    path: '/home',
+    path: '/',
     name: 'Layout',
     component: () => import('@/layout/index.vue')
-  },
-  {
-    path: '',
-    redirect: '/home'
   }
   // {
   //   path: '/about',

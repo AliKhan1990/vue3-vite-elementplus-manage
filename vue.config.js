@@ -35,5 +35,12 @@ module.exports = defineConfig({
         changeOrigin: true // 是否跨域
       }
     }
+  },
+  css: {
+    loaderOptions: {
+      css: {
+        // modules: true
+      }
+    }
   }
 })
