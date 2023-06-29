@@ -10,7 +10,6 @@ const whiteList = ['Login']
 router.beforeEach(async (to, from, next) => {
   // 用户已登录,不允许进入login
   if (store.getters.token) {
-    debugger
     if (to.path === '/login') {
       next('/')
     } else {

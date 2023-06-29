@@ -17,11 +17,11 @@
         <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off"/>
       </el-form-item>
       <!-- 密码输入 -->
-      <el-form-item prop="password">
+      <el-form-item prop="password" >
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password"/>
+        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password/>
         <span class="show-pwd" @click="onChangePwdType">
           <svg-icon :icon="secInputType === 'password' ? 'eye' : 'eye-open'"/>
         </span>
