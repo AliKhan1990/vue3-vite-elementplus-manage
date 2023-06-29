@@ -1,9 +1,15 @@
 <template>
-  <div class="sidebar-container">Side</div>
+  <div class="sidebar-container">
+    <h1>哈哈哈哈</h1>
+    <el-scrollbar>
+      <side-bar-menu />
+    </el-scrollbar>
+    <SideBarMenu />
+  </div>
 </template>
 
 <script setup>
-// import {} from vue
+import SideBarMenu from './SideBarMenu'
 </script>
 
 <style lang="scss" scoped></style>

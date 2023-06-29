@@ -24,6 +24,9 @@ module.exports = defineConfig({
         symbolId: 'icon-[name]'
       })
       .end()
+    config.resolve
+      .alias
+      .set('path', require.resolve('path-browserify'))
   },
   devServer: {
     // 配置反向代理
