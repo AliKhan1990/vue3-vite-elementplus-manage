@@ -1,7 +1,11 @@
 <template>
   <!-- 一级 menu 菜单 -->
-  <el-menu :unique-opened="true" default-active="2" background-color="#545c64" text-color="#fff"
-    active-text-color="#ffd04b">
+  <el-menu :unique-opened="true"
+    router
+    :default-active="activeMenu"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
+    :active-text-color="$store.getters.cssVar.menuActiveText">
     <!-- 子集 menu 菜单 -->
     <side-bar-item
       v-for="item in routes"
@@ -13,7 +17,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route-complex'
 import SideBarItem from './SideBarItem'
 
@@ -23,6 +27,13 @@ const routes = computed(() => {
   return generateMenus(filterRoutes)
 })
 console.log(JSON.stringify(routes.value))
+
+const route = useRoute()
+const activeMenu = computed(() => {
+  const { path } = route
+  console.log(path)
+  return path
+})
 </script>
 
 <style lang="scss" scoped>
