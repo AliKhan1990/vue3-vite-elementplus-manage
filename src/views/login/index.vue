@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
     <el-form class="login-form"
-      ref="ruleFormRef"
-      :model="ruleForm"
+      ref="loginFromRef"
+      :model="loginForm"
       :rules="rules"
       status-icon>
       <!-- 登录页面 -->
@@ -11,20 +11,22 @@
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon="user" />
-        </span>
-        <el-input placeholder="username" name="username" v-model="ruleForm.username" type="text" autocomplete="off"/>
+        <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off">
+          <template #prefix>
+            <el-icon class="el-input__icon"><UserFilled /></el-icon>
+          </template>
+        </el-input>
       </el-form-item>
       <!-- 密码输入 -->
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon="password" />
-        </span>
-        <el-input placeholder="password" name="password" type="password" v-model="ruleForm.password"/>
+      <el-form-item prop="password" >
+        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password>
+          <template #prefix>
+            <el-icon class="el-input__icon"><Lock /></el-icon>
+          </template>
+        </el-input>
       </el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
-      <el-button @click="resetForm(ruleFormRef)">重置</el-button>
+      <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
+      <el-button @click="resetForm(loginFromRef)">重置</el-button>
   </el-form>
   </div>
 </template>
@@ -32,22 +34,28 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useStore } from 'vuex'
+import { ElMessage } from 'element-plus'
 
-const ruleFormRef = ref< FormInstance >()
+// 登录动作处理
+const loading = ref(false)
+const loginFromRef = ref<FormInstance>()
+const store = useStore()
 
-const ruleForm = reactive({
+const secInputType = ref('password')
+
+const loginForm = reactive({
   username: '',
   password: ''
 })
 
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    debugger
     callback(new Error('Please input the password'))
   } else {
-    if (ruleForm.password !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('password', () => null)
+    if (loginForm.password !== '') {
+      if (!loginFromRef.value) return
+      loginFromRef.value.validateField('password', () => null)
     }
     callback()
   }
@@ -62,15 +70,25 @@ const rules = reactive<FormRules>({
   ]
 })
 
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid: any) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
+const handlerLogin = () => {
+  loginFromRef.value.validate(valid => {
+    if (!valid) return
+
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm)
+      .then(() => {
+        loading.value = false
+        // TODO: 登录后操作
+        ElMessage({
+          message: 'Congrats, this is a success message.',
+          type: 'success'
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        loading.value = false
+      })
   })
 }
 
@@ -111,26 +129,17 @@ $cursor: #fff;
     ::v-deep .el-input {
       display: inline-block;
       height: 47px;
-      width: 85%;
 
       input {
         background: transparent;
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
-        padding: 12px 5px 12px 15px;
         color: $light_gray;
         height: 47px;
         caret-color: $cursor;
       }
     }
-  }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    display: inline-block;
   }
 
   .title-container {
