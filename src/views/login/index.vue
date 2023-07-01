@@ -11,20 +11,19 @@
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon="user" />
-        </span>
-        <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off"/>
+        <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off">
+          <template #prefix>
+            <el-icon class="el-input__icon"><UserFilled /></el-icon>
+          </template>
+        </el-input>
       </el-form-item>
       <!-- 密码输入 -->
       <el-form-item prop="password" >
-        <span class="svg-container">
-          <svg-icon icon="password" />
-        </span>
-        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password/>
-        <span class="show-pwd" @click="onChangePwdType">
-          <svg-icon :icon="secInputType === 'password' ? 'eye' : 'eye-open'"/>
-        </span>
+        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password>
+          <template #prefix>
+            <el-icon class="el-input__icon"><Lock /></el-icon>
+          </template>
+        </el-input>
       </el-form-item>
       <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
       <el-button @click="resetForm(loginFromRef)">重置</el-button>
@@ -98,15 +97,6 @@ const resetForm = (formEl: FormInstance | undefined) => {
   formEl.resetFields()
 }
 
-// 点击切换看见图标及类型
-const onChangePwdType = () => {
-  if (secInputType.value === 'password') {
-    secInputType.value = 'text'
-  } else {
-    secInputType.value = 'password'
-  }
-}
-
 </script>
 
 <style lang="scss" scoped>
@@ -139,26 +129,17 @@ $cursor: #fff;
     ::v-deep .el-input {
       display: inline-block;
       height: 47px;
-      width: 85%;
 
       input {
         background: transparent;
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
-        padding: 12px 5px 12px 15px;
         color: $light_gray;
         height: 47px;
         caret-color: $cursor;
       }
     }
-  }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    display: inline-block;
   }
 
   .title-container {

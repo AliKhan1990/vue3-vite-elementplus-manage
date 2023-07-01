@@ -4,7 +4,7 @@
 export const generateMenus = (routes) => {
   const menu = []
   routes.forEach((route) => {
-    generateMenue(route, menu)
+    generateMenu(route, menu)
   })
   return menu
 }
@@ -14,7 +14,7 @@ export const generateMenus = (routes) => {
  * @param {*} route 当前节点
  * @param {*} parent 父级节点
  */
-const generateMenue = (route, parent) => {
+const generateMenu = (route, parent) => {
   // 递归终止条件, 该路由是最后一级，即没有children
   if (!route.children) {
     // 如果存在meta，也就是符合成为menu的规则，直接挂载给上一级
@@ -37,12 +37,12 @@ const generateMenue = (route, parent) => {
       route.children = []
       // 接着遍历子节点
       tmpChildren.forEach((child) => {
-        generateMenue(child, route)
+        generateMenu(child, route)
       })
     } else {
       // 来到这儿表示当前节点不属于menu，那么就遍历当前节点的子节点，并传入当前节点的父节点
       route.children.forEach((child) => {
-        generateMenue(child, parent)
+        generateMenu(child, parent)
       })
     }
   }

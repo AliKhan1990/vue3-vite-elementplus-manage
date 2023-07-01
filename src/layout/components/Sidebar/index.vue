@@ -4,7 +4,6 @@
     <el-scrollbar>
       <side-bar-menu />
     </el-scrollbar>
-    <SideBarMenu />
   </div>
 </template>
 

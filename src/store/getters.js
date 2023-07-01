@@ -7,7 +7,8 @@ const getters = {
     // True 有用户信息
     return Object.keys(state.user.userInfo).length > 0
   },
-  cssVar: () => variables
+  cssVar: () => variables,
+  sidebarOpened: state => state.app.sidebarOpened
 }
 
 export default getters
