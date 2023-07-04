@@ -13,6 +13,7 @@
 <script setup>
 import SideBarMenu from './SideBarMenu'
 // import variables from '@/styles/variables.module.scss'
+const logoHeight = '44px'
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +24,7 @@ import SideBarMenu from './SideBarMenu'
   padding-top: 15px;
 }
 .logo-container {
-  height: 44px;
+  height: v-bind(logoHeight);
   padding: 10px 0 22px 0;
   display: flex;
   align-items: center;
