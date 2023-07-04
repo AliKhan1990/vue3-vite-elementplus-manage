@@ -60,6 +60,8 @@ const logout = () => {
 
   .breadcrumb-container {
     float: left;
+    line-height: 50px;
+    height: 50px;
   }
 
   .right-menu {

@@ -1,6 +1,7 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <transition-group name="breadcrumb">
+    <!-- type="animation" mode="out-in" tag="div" -->
+    <transition-group name="breadcrumb" class="breadcrumb-con" mode="out-in" appear>
       <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
         <!-- 面包屑的最后一项 -->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{ item.meta.title }}</span>
@@ -38,13 +39,12 @@ watch(route, () => {
 const linkHoverColor = ref(store.getters.cssVar.menuBg)
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .breadcrumb {
   display: inline-block;
   font-size: 14px;
   line-height: 50px;
   margin-left: 8px;
-
   .redirect {
     color: #666;
     font-weight: 600;
@@ -57,5 +57,8 @@ const linkHoverColor = ref(store.getters.cssVar.menuBg)
     color: #97a8be;
     cursor: text;
   }
+}
+.breadcrumb-con {
+  position: relative;
 }
 </style>

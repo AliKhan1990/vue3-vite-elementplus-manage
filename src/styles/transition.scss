@@ -1,18 +1,62 @@
-.breadcrumb-enter-active,
-.breadcrumb-leave-to {
-  transition: all 10s;
-}
+@import './transition.scss';
 
-.breadcrumb-enter-from,
-.breadcrumb-leave-active {
+/* 路由切换动画 */
+/* breadcrumb-transform */
+.breadcrumb-leave-active,
+.breadcrumb-enter-active {
+  transition: all 0.5s;
+}
+ 
+/* 可能为enter失效，拆分为 enter-from和enter-to */
+.breadcrumb-enter-from {  
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateY(-30px);
+}
+.breadcrumb-enter-to { 
+  opacity: 1;
+  transform: translateY(0px);
+}
+ 
+.breadcrumb-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.breadcrumb-leave-active {
-  position: absolute;
-  display: inline-block;
-  .el-breadcrumb__separator {
-    display: none;
-  }
-}
+// .breadcrumb-enter-active{
+//   animation: bounceInRight 1s ease-in;
+// }
+// .breadcrumb-leave-active{
+//   position: absolute;
+//   animation: bounceOutRight 1s ease-in;
+// }
+
+// .breadcrumb-enter-active {
+//   animation: bounceInRight 1s;
+//   transition: transform 1s ease;
+// }
+
+// .breadcrumb-leave-active {
+//   position: absolute;
+//   animation: bound-in 1s reverse;
+//   .el-breadcrumb__separator {
+//     display: none;
+//   }
+// }
+
+// .breadcrumb-enter-from,
+// .breadcrumb-leave-to {
+//   opacity: 0;
+//   transform: translateX(20px);
+// }
+
+// .breadcrumb-enter-to, 
+// .breadcrumb-leave-from {
+//   opacity: 1;
+//   transform: translateX(0px);
+// }
+
+// @keyframes bound-in {
+//   0%{ transform: translateX(0px); }
+//   50%{ transform: translateX(10px); }
+//   100%{ transform: translateX(20px); }
+// }
