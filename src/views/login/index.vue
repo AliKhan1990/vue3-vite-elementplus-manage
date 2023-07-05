@@ -8,11 +8,12 @@
       status-icon>
       <!-- 登录页面 -->
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <lang-select class="lang-select" effect="light" />
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
-        <el-input placeholder="username" name="username" v-model="loginForm.username" type="text" autocomplete="off">
+        <el-input :placeholder="$t('msg.login.placehoderName')" name="username" v-model="loginForm.username" type="text" autocomplete="off">
           <template #prefix>
             <el-icon class="el-input__icon"><UserFilled /></el-icon>
           </template>
@@ -20,24 +21,29 @@
       </el-form-item>
       <!-- 密码输入 -->
       <el-form-item  prop="password" >
-        <el-input placeholder="password" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password>
+        <el-input :placeholder="$t('msg.login.placehoderPwd')" name="password" :type="secInputType" v-model="loginForm.password" @keyup.enter="handlerLogin" show-password>
           <template #prefix>
             <el-icon class="el-input__icon"><Lock /></el-icon>
           </template>
         </el-input>
       </el-form-item>
-      <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
-      <el-button @click="resetForm(loginFromRef)">重置</el-button>
+      <el-button type="primary" :loading="loading" @click="handlerLogin">{{ $t('msg.login.loginBtn') }}</el-button>
+      <el-button @click="resetForm(loginFromRef)">{{ $t('msg.login.loginResetBtn') }}</el-button>
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
   </el-form>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+import LangSelect from '@/components/LangSelect'
+
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 
+const i18n = useI18n()
 // 登录动作处理
 const loading = ref(false)
 const loginFromRef = ref<FormInstance>()
@@ -54,7 +60,7 @@ const loginForm = reactive({
 
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Please input the password'))
+    callback(new Error(i18n.t('msg.login.passwordRule')))
   } else {
     if (loginForm.password !== '') {
       if (!loginFromRef.value) return
@@ -66,7 +72,7 @@ const validatePass = (rule: any, value: any, callback: any) => {
 
 const rules = reactive<FormRules>({
   username: [
-    { required: true, message: 'Please input Your Username', trigger: 'blur' }
+    { required: true, message: i18n.t('msg.login.usernameRule'), trigger: 'blur' }
   ],
   password: [
     { required: true, validator: validatePass, trigger: 'blur' }
@@ -113,7 +119,25 @@ $cursor: #fff;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
-
+  .tips {
+    font-size: 16px;
+    color: #fff;
+    line-height: 26px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  .lang-select {
+    position: absolute;
+    top: 0;
+    background: rgba(242, 239, 239, 1);
+    right: 0;
+    border-radius: 10%;
+    padding: 3px;
+    font-size: 26px;
+    color: #fff;
+  }
   :deep(.el-input__wrapper) {
     width: 100%;
   }
