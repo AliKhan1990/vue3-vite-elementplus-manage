@@ -30,9 +30,9 @@
 </template>
 
 <script setup>
-import Hamburger from '@/components/Hamburger/index'
-import Breadcrumb from '@/components/Breadcrumb/index'
-import LangSelect from '@/components/LangSelect/index'
+import Hamburger from '@/components/Hamburger/index.vue'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
 import { useStore } from 'vuex'
 
 const store = useStore()

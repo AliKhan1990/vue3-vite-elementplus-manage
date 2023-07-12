@@ -6,7 +6,9 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-essential',
     '@vue/standard',
-    '@vue/typescript/recommended'
+    '@vue/typescript/recommended',
+    // vue ts 的规则
+    '@vue/eslint-config-typescript'
   ],
   parserOptions: {
     ecmaVersion: 2020

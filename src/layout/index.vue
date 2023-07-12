@@ -19,15 +19,15 @@
 
 <script setup>
 import variables from '@/styles/variables.module.scss'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar/index'
-import AppMain from './components/AppMain'
+import Navbar from './components/Navbar.vue'
+import Sidebar from './components/Sidebar/index.vue'
+import AppMain from './components/AppMain.vue'
 // console.log(variables)
 </script>
 
 <style lang="scss" module scoped>
-@import '~@/styles/mixin.module.scss';
-@import '~@/styles/variables.module.scss';
+@import '@/styles/mixin.module.scss';
+@import '@/styles/variables.module.scss';
 
 .app-wrapper {
   @include clearfix;

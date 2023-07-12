@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItem.vue'
 import { defineProps } from 'vue'
 // 定义 props
 defineProps({

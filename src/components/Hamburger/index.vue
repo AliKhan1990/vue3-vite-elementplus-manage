@@ -16,6 +16,7 @@ const toggleClick = () => {
 const icon = computed(() =>
   store.getters.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'
 )
+
 </script>
 
 <style lang="scss" scoped>

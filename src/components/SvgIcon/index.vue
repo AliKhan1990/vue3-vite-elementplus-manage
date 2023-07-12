@@ -18,6 +18,10 @@ const props = defineProps({
   className: {
     type: String,
     default: ''
+  },
+  prefix: {
+    type: String,
+    default: 'icon'
   }
 })
 

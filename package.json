@@ -1,66 +1,96 @@
 {
-  "name": "vue3-vite-elementplus-manage",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "@element-plus/icons": "^0.0.11",
-    "@element-plus/icons-vue": "^2.0.6",
-    "axios": "^1.4.0",
-    "core-js": "^3.8.3",
-    "element-plus": "^2.2.0",
-    "md5": "^2.3.0",
-    "vue": "^3.2.13",
-    "vue-class-component": "^8.0.0-0",
-    "vue-i18n": "9.3.0-beta.21",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "12.1.4",
-    "@commitlint/config-conventional": "12.1.4",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "@vue/eslint-config-standard": "^6.1.0",
-    "@vue/eslint-config-typescript": "^9.1.0",
-    "cz-customizable": "6.3.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "husky": "7.0.1",
-    "lint-staged": "^11.1.2",
-    "path-browserify": "^1.0.1",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "svg-sprite-loader": "^6.0.11",
-    "typescript": "~4.5.5",
-    "vue-cli-plugin-element-plus": "~0.0.13"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
-  }
+	"name": "vue3-vite-elementplus-manage",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint",
+		"prepare": "husky install",
+		"vite": "vite",
+		"dev": "vite",
+		"test": "vite --host --mode test",
+		"start": "vite",
+		"preview": "vite preview",
+		"vite-build": "vite build --mode production",
+		"lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
+	},
+	"dependencies": {
+		"@element-plus/icons": "^0.0.11",
+		"@element-plus/icons-vue": "^2.0.6",
+		"axios": "^1.4.0",
+		"core-js": "^3.8.3",
+		"element-plus": "^2.2.0",
+		"md5": "^2.3.0",
+		"vue": "^3.2.13",
+		"vue-class-component": "^8.0.0-0",
+		"vue-i18n": "9.3.0-beta.21",
+		"vue-router": "^4.0.3",
+		"vuex": "^4.0.0"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "12.1.4",
+		"@commitlint/config-conventional": "12.1.4",
+		"@frsource/vite-plugin-stylelint": "^1.0.2",
+		"@originjs/vite-plugin-commonjs": "^1.0.3",
+		"@originjs/vite-plugin-require-context": "^1.0.9",
+		"@typescript-eslint/eslint-plugin": "^5.4.0",
+		"@typescript-eslint/parser": "^5.4.0",
+		"@vitejs/plugin-legacy": "^1.4.4",
+		"@vitejs/plugin-vue": "^1.10.2",
+		"@vitejs/plugin-vue-jsx": "^3.0.1",
+		"@vue/cli-plugin-babel": "~5.0.0",
+		"@vue/cli-plugin-eslint": "~5.0.0",
+		"@vue/cli-plugin-router": "~5.0.0",
+		"@vue/cli-plugin-typescript": "~5.0.0",
+		"@vue/cli-plugin-vuex": "~5.0.0",
+		"@vue/cli-service": "~5.0.0",
+		"@vue/compiler-sfc": "^3.1.5",
+		"@vue/eslint-config-standard": "^6.1.0",
+		"@vue/eslint-config-typescript": "^9.1.0",
+		"cz-customizable": "6.3.0",
+		"eslint": "^7.32.0",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-vue": "^8.0.3",
+		"husky": "7.0.1",
+		"lib-flexible": "^0.3.2",
+		"lint-staged": "^11.1.2",
+		"path-browserify": "^1.0.1",
+		"rxjs": "^7.8.1",
+		"sass": "^1.32.7",
+		"sass-loader": "^12.0.0",
+		"stylelint": "^15.10.1",
+		"stylelint-config-prettier": "^9.0.5",
+		"stylelint-config-standard": "^34.0.0",
+		"stylelint-order": "^6.0.3",
+		"stylelint-scss": "^5.0.1",
+		"svg-sprite-loader": "^6.0.11",
+		"typescript": "~4.5.5",
+		"unplugin-auto-import": "^0.16.6",
+		"unplugin-icons": "^0.16.3",
+		"unplugin-vue-components": "^0.25.1",
+		"vite": "^3.2.7",
+		"vite-plugin-env-compatible": "^1.1.1",
+		"vite-plugin-eslint": "^1.8.1",
+		"vite-plugin-html-env": "^1.2.8",
+		"vite-plugin-stylelint": "^4.3.0",
+		"vite-plugin-svg-icons": "^2.0.1",
+		"vue-cli-plugin-element-plus": "~0.0.13"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
+	},
+	"gitHooks": {
+		"pre-commit": "lint-staged"
+	},
+	"lint-staged": {
+		"src/**/*.{js,vue}": [
+			"eslint --fix",
+			"git add"
+		]
+	}
 }

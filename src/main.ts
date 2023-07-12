@@ -5,9 +5,11 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import '@/styles/index.scss'
+import 'virtual:svg-icons-register'
 // 导入 svgIcon
 import installIcons from '@/icons'
 import * as icons from '@element-plus/icons'
+
 // 导入i18n实例
 import i18n from '@/i18n'
 

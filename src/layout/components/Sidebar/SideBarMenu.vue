@@ -23,7 +23,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import { filterRouters, generateMenus } from '@/utils/route-complex'
-import SideBarItem from './SideBarItem'
+import SideBarItem from './SideBarItem.vue'
 const router = useRouter()
 const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())

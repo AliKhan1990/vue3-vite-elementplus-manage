@@ -11,8 +11,7 @@
 </template>
 
 <script setup>
-import SideBarMenu from './SideBarMenu'
-// import variables from '@/styles/variables.module.scss'
+import SideBarMenu from './SideBarMenu.vue'
 const logoHeight = '44px'
 </script>
 
