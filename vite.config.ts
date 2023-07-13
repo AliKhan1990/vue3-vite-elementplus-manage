@@ -28,9 +28,7 @@ export default ({
   const env = loadEnv(mode, root)
   let rollupOptions = {}
 
-
   let optimizeDeps = {};
-
 
   let alias = {
     '.git': path.resolve(__dirname, './.git'),
@@ -48,13 +46,13 @@ export default ({
           target: 'https://api.imooc-admin.lgdsunday.club/',
           changeOrigin: true,
           // ws: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
+          // rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
 
   // todo 替换为原有变量
   let define = {
-    'process.env.VITE_NODE_ENV': command === 'development' ? '"development"' : '"production"',
+    'process.env.VITE_NODE_ENV': import.meta.env === 'dev' ? '"development"' : '"production"'
   }
 
   let esbuild = {}
@@ -67,11 +65,14 @@ export default ({
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
     define: define,
+    // envPrefix:"APP_", 原为 VITE_
     server: {
       // 服务配置
-      port: 3000, // 类型： number 指定服务器端口;
+      target: 'https://api.imooc-admin.lgdsunday.club/', // env.VITE_TARGET as string
+      port: 8080, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
-      cors: true, // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      // cors: true, // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
+      changeOrigin: true,
       host: '0.0.0.0',
       // 代理
       proxy

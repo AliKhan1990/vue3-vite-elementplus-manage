@@ -13,9 +13,9 @@
 		"noImplicitAny": false,
 		"useDefineForClassFields": true,
 		"sourceMap": true,
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"types": [
-			"webpack-env"
+			"node"
 		],
 		"paths": {
 			"@/*": [

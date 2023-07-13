@@ -1,12 +1,5 @@
-let baseURL = ''
-if (process.env.NODE_ENV === 'development') {
-  // 开发环境  因为我这里写了配置跨域的重定路径所以是api 如下图
-  baseURL = '/api'
-} else if (process.env.NODE_ENV === 'production') {
-  // 正式环境 真正的上线网址 不是跨域别名路径,在network不显示
-  baseURL = ''
-} else if (process.env.NODE_ENV === 'test') {
-  // 测试环境
-  baseURL = '/test'
-}
+const baseURL = import.meta.env.VITE_BASE_URL
+
+console.log('%c当前环境为：' + import.meta.env.MODE + '/' + JSON.stringify(import.meta.env), 'color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px')
+
 export default baseURL

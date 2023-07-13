@@ -1,5 +1,4 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
-
 // https://webpack.docschina.org/guides/dependency-management/#requirecontext
 // 通过 import.meta.globEager 函数来创建自己的 context
 const svgRequire = import.meta.glob('./svg/*.svg', { eager: true })
@@ -20,9 +19,7 @@ for (const key in svgRequire) {
 // })
 
 // svgRequire.keys().forEach(svgIcon => svgRequire(svgIcon))
-
-// console.log(import.meta.env)
-console.log(svgRequire)
+// console.log(svgRequire)
 
 export default app => {
   app.component('svg-icon', SvgIcon)
