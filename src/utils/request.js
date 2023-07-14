@@ -15,7 +15,7 @@ service.defaults.headers['Conntent-Type'] = 'application/json;charset=utf-8'
 service.interceptors.request.use(
   config => {
     // 添加 icode
-    config.headers.icode = '40C9D047C730848F'
+    config.headers.icode = 'DC64F500D6896642'
     // 必须返回 config
     return config
   }

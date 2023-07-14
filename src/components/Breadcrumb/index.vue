@@ -1,13 +1,13 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
     <!-- type="animation" mode="out-in" tag="div" -->
-    <transition-group name="breadcrumb" class="breadcrumb-con" mode="out-in" appear>
+    <!-- <transition-group name="breadcrumb" class="breadcrumb-con" mode="out-in" appear> -->
       <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
         <!-- 面包屑的最后一项 -->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{ generateTitle(item.meta.title) }}</span>
         <span v-else class="redirect" @click="onClickLink(item.path)">{{ generateTitle(item.meta.title) }}</span>
       </el-breadcrumb-item>
-    </transition-group>
+    <!-- </transition-group> -->
   </el-breadcrumb>
 </template>
 
