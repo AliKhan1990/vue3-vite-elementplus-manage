@@ -3,6 +3,7 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <ScreenFull class="right-menu-item hover-effect" />
       <!-- 主体选择 -->
       <theme-picker class="right-menu-item hover-effect" />
       <!-- 国际化选择 -->
@@ -35,6 +36,7 @@
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ScreenFull from '@/components/ScreenFull/index.vue'
 import { useStore } from 'vuex'
 import ThemePicker from '@/components/ThemeSelect/index.vue'
 

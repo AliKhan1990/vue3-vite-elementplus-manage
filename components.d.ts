@@ -31,6 +31,7 @@ declare module 'vue' {
     LangSelect: typeof import('./src/components/LangSelect/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScreenFull: typeof import('./src/components/ScreenFull/index.vue')['default']
     SelectColor: typeof import('./src/components/ThemeSelect/components/selectColor.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     ThemeSelect: typeof import('./src/components/ThemeSelect/index.vue')['default']
