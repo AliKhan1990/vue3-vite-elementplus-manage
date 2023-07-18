@@ -42,6 +42,7 @@ export default {
   tagsView: {
     refresh: '刷新',
     closeRight: '关闭右侧',
+    closeLefts: '关闭左侧',
     closeOther: '关闭其他'
   },
   theme: {

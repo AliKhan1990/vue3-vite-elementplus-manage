@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Breadcrumb: typeof import('./src/components/Breadcrumb/index.vue')['default']
+    ContextMenu: typeof import('./src/components/TagsView/contextMenu.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -38,6 +39,7 @@ declare module 'vue' {
     ScreenFull: typeof import('./src/components/ScreenFull/index.vue')['default']
     SelectColor: typeof import('./src/components/ThemeSelect/components/selectColor.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
+    TagsView: typeof import('./src/components/TagsView/index.vue')['default']
     ThemeSelect: typeof import('./src/components/ThemeSelect/index.vue')['default']
   }
 }

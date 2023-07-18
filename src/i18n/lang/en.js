@@ -42,6 +42,7 @@ export default {
   tagsView: {
     refresh: 'Refresh',
     closeRight: 'Close Rights',
+    closeLefts: 'Close Lefts',
     closeOther: 'Close Others'
   },
   theme: {
