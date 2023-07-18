@@ -40,7 +40,6 @@ const store = useStore()
 const isCollapse = computed(() => {
   return store.getters.sidebarOpened
 })
-console.log(store.getters.sidebarOpened)
 </script>
 
 <style lang="scss" scoped>

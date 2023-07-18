@@ -3,6 +3,7 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <header-search class="right-menu-item hover-effect" />
       <ScreenFull class="right-menu-item hover-effect" />
       <!-- 主体选择 -->
       <theme-picker class="right-menu-item hover-effect" />
@@ -33,6 +34,7 @@
 </template>
 
 <script setup>
+import HeaderSearch from '@/components/HeaderSearch/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
