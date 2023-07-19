@@ -95,10 +95,9 @@ export default {
     feature: 'Feature',
     chapter: 'Chapter',
     author: 'Author',
-    name: 'Sunday',
+    name: 'AliKhan',
     job: 'A front-end development program',
-    Introduction:
-      'A senior technical expert, once worked in a domestic first-line Internet company, and has coordinated multiple large-scale projects with more than tens of millions of users. Committed to researching big front-end technology, he has been invited to participate in domestic front-end technology sharing sessions many times, such as: Google China Technology Sharing Session in 2018.'
+    Introduction: 'Front-end development engineer, once worked for a large foreign Internet company, coordinated a number of large-scale projects. Committed to research large front-end technology.'
   },
   userInfo: {
     print: 'Print',
