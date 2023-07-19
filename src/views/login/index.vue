@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
-import LangSelect from '@/components/LangSelect'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -119,6 +119,9 @@ $cursor: #fff;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
+  :deep(.el-form-item--default .el-form-item__error) {
+    padding-top: 6px;
+  }
   .tips {
     font-size: 16px;
     color: #fff;

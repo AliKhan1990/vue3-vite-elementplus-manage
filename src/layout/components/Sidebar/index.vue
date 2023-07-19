@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container">
+  <div id="guide-sidebar" class="sidebar-container">
     <div :class="['avatar-container', $store.getters.sidebarOpened ? 'scale-up' : 'scale-down']">
       <el-avatar :size="$store.getters.sidebarOpened ? 'default' : 'small'" shape="square" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
       <p class="username" v-if="$store.getters.sidebarOpened">{{$store.getters.userInfo.username }}</p>

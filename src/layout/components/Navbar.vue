@@ -1,14 +1,15 @@
 <template>
   <div class="navbar">
     <hamburger class="hamburger-container" />
-    <breadcrumb class="breadcrumb-container" />
+    <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
     <div class="right-menu">
+      <guide class="right-menu-item hover-effect" />
       <header-search class="right-menu-item hover-effect" />
       <ScreenFull class="right-menu-item hover-effect" />
       <!-- 主体选择 -->
       <theme-picker class="right-menu-item hover-effect" />
       <!-- 国际化选择 -->
-      <lang-select class="right-menu-item hover-effect" />
+      <lang-select id="guide-tags" class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -34,6 +35,7 @@
 </template>
 
 <script setup>
+import Guide from '@/components/Guide'
 import HeaderSearch from '@/components/HeaderSearch/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
