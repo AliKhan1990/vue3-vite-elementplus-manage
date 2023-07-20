@@ -9,6 +9,8 @@ import 'virtual:svg-icons-register'
 // 导入 svgIcon
 import installIcons from '@/icons'
 import * as icons from '@element-plus/icons'
+// filter
+import installFilter from '@/filters/index.js'
 
 // 导入i18n实例
 import i18n from '@/i18n'
@@ -18,6 +20,7 @@ import './permission.js'
 const app = createApp(App)
 
 installIcons(app)
+installFilter(app)
 
 Object.keys(icons).forEach((key) => {
   app.component(key, icons[key])
