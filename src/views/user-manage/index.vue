@@ -36,14 +36,14 @@
           </template>
         </el-table-column>
         <el-table-column :label="$t('msg.excel.action')" fixed="right" width="260">
-          <template #default>
-            <el-button type="primary" size="small">{{
+          <template #default="{ row }">
+            <el-button type="primary">{{
               $t('msg.excel.show')
             }}</el-button>
-            <el-button type="info" size="small">{{
+            <el-button type="info">{{
               $t('msg.excel.showRole')
             }}</el-button>
-            <el-button type="danger" size="small">{{
+            <el-button type="danger" size="mini" @click="onRemoveClick(row)" :disabled="row.role.some(it => { return (it.id == 1 || it.id == 2) })">{{
               $t('msg.excel.remove')
             }}</el-button>
           </template>
@@ -58,12 +58,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { getUserManageList } from '@/api/user-manage'
+import { ref, onActivated } from 'vue'
+import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { ElMessageBox, ElMessage } from 'element-plus'
+
+const i18n = useI18n()
 
 const router = useRouter()
+
+/**
+ * 删除按钮点击事件
+ */
+const onRemoveClick = row => {
+  ElMessageBox.confirm(
+    i18n.t('msg.excel.dialogTitle1') +
+    row.username +
+    i18n.t('msg.excel.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteUser(row._id)
+    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
+}
+
 /**
  * excel 导入点击事件
  */
@@ -105,6 +129,9 @@ const handleCurrentChange = currentPage => {
   page.value = currentPage
   getListData()
 }
+
+// 处理导入用户后数据不重新加载的问题
+onActivated(getListData)
 </script>
 
 <style lang="scss" scoped>
