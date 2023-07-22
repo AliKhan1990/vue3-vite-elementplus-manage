@@ -3,9 +3,10 @@
     <el-card class="header">
       <div>
         <el-button type="primary" @click="onImportExcelClick">{{ $t('msg.excel.importExcel') }}</el-button>
-        <el-button type="success">
+        <el-button type="success" @click="onToExcelClick">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
+        <export-to-excel v-model="exportToExcelVisible" />
       </div>
     </el-card>
     <el-card>
@@ -64,10 +65,19 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import ExportToExcel from './components/Export2Excel.vue'
 
 const i18n = useI18n()
 
 const router = useRouter()
+
+/**
+ * excel 导出点击事件
+ */
+const exportToExcelVisible = ref(false)
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
+}
 
 /**
  * 删除按钮点击事件

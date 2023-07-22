@@ -29,6 +29,9 @@ dependencies:
   element-plus:
     specifier: ^2.2.0
     version: 2.2.0(vue@3.3.4)
+  file-saver:
+    specifier: 2.0.5
+    version: 2.0.5
   fuse.js:
     specifier: 6.4.6
     version: 6.4.6
@@ -6201,6 +6204,10 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /fill-range@4.0.0:
     resolution: {integrity: sha512-VcpLTWqWDiTerugjj8e3+esbg+skS3M9e54UuR3iCeIDMXCLTsAH8hTSzDQU/X6/6t3eYkOKoZSef2PlU6U1XQ==}
