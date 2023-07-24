@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
-import { useStore } from 'vuex'
+import store from '@/store'
 
+const language = store.getters.language
 export const dateFilter = (val, type) => {
-  const language = useStore().getters.language
   let format = ''
   if (!isNaN(val)) {
     val = parseInt(val)

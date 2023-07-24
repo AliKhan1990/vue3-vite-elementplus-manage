@@ -40,9 +40,8 @@ const formatJson = (headers, rows) => {
       if (headers[key] === 'role') {
         const roles = item[headers[key]]
         return JSON.stringify(roles.map(role => role.title))
-      }
-      // 时间特殊处理
-      if (headers[key] === 'openTime') {
+      } else if (headers[key] === 'openTime') {
+        // 时间特殊处理
         return dateFilter(item[headers[key]])
       }
       return item[headers[key]]
