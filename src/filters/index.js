@@ -10,11 +10,11 @@ export const dateFilter = (val, type) => {
   // 类型处理
   if (!type) {
     format = language === 'zh' ? 'YYYY年MM月DD日' : 'YYYY-MM-DD'
-  } else if (Object.keys(type).length > 1) {
+  } else if (type?.constructor === Object && Object.keys(type).length > 1) {
     const { year, month, day } = type
     format = `YYYY${year}MM${month}DD${day}`
   } else {
-    format = `YYYY${type}MM${type}DD${type}`
+    format = type
   }
 
   return dayjs(val).format(format)

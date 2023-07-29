@@ -66,6 +66,7 @@ watch(
       query,
       title: getTitle(to)
     })
+    document.title = getTitle(to)
   },
   {
     immediate: true

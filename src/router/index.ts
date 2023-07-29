@@ -41,7 +41,8 @@ const privateRoutes = [
       {
         path: '/user/info/:id',
         name: 'userInfo',
-        component: () => import('@/views/user-info/index.vue'),
+        component: () => import('@/views/user-info/index'),
+        props: true,
         meta: {
           title: 'userInfo'
         }

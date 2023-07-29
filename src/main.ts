@@ -11,6 +11,7 @@ import installIcons from '@/icons'
 import * as icons from '@element-plus/icons'
 // filter
 import installFilter from '@/filters/index.js'
+import installDirective from '@/directives'
 
 // 导入i18n实例
 import i18n from '@/i18n'
@@ -19,6 +20,7 @@ import './permission.js'
 
 const app = createApp(App)
 
+installDirective(app)
 installIcons(app)
 installFilter(app)
 

@@ -196,7 +196,7 @@ export default {
     dayIncome: '日收益曲线',
     unit: '万元',
     pieChartTitle: '大区营销图示',
-    cloudChartTitle: '慕课 logo 文档云',
+    cloudChartTitle: 'logo 文档云',
     bmapChartTitle: '营收业绩图示（地图不支持国际化）',
     tadayReceivable: '今日回款',
     tadayBalance: '今日结余',
