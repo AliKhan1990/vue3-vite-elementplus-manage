@@ -100,7 +100,7 @@ const printObj = {
   // 打印区域
   id: 'userInfoBox',
   // 打印标题
-  popTitle: 'imooc-vue-element-admin',
+  popTitle: 'staff-information',
   // 打印前
   beforeOpenCallback() {
     printLoading.value = true
