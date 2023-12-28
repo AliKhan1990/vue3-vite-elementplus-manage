@@ -45,7 +45,7 @@
             >
               {{ $t('msg.excel.show') }}
             </el-button>`
-            <el-button type="info">{{
+            <el-button @click="onShowRoleClick(row)" type="info">{{
               $t('msg.excel.showRole')
             }}</el-button>
             <el-button type="danger" size="mini" @click="onRemoveClick(row)" :disabled="row.role.some(it => { return (it.id == 1 || it.id == 2) })">{{
@@ -55,25 +55,42 @@
         </el-table-column>
       </el-table>
 
-      <el-pagination class="pagination" @size-change="handleSizeChange" @current-change="handleCurrentChange"
-        :current-page="page" :page-sizes="[2, 5, 10, 20]" :page-size="size"
-        layout="total, sizes, prev, pager, next, jumper" :total="total"/>
+      <el-pagination class="pagination"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="page"
+        :page-sizes="[2, 5, 10, 20]"
+        :page-size="size"
+        layout="total,sizes,prev,pager,next,jumper"
+        :total="total"/>
     </el-card>
+    <roles-dialog v-model="roleDialogVisible" :userId="selectUserId" @updateRole="getListData" />
   </div>
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, watch } from 'vue'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import ExportToExcel from './components/Export2Excel.vue'
+import RolesDialog from './components/roles.vue'
 
 const i18n = useI18n()
 
 const router = useRouter()
+
+const roleDialogVisible = ref(false)
+
+const selectUserId = ref('')
+
+// 数据相关
+const tableData = ref([])
+const total = ref(0)
+const page = ref(1)
+const size = ref(10)
 
 /**
  * excel 导出点击事件
@@ -82,6 +99,11 @@ const exportToExcelVisible = ref(false)
 const onToExcelClick = () => {
   exportToExcelVisible.value = true
 }
+
+// 保证每次打开重新获取用户角色数据
+watch(roleDialogVisible, val => {
+  if (!val) selectUserId.value = ''
+})
 
 /**
  * 删除按钮点击事件
@@ -116,12 +138,9 @@ const onShowClick = id => {
   router.push(`/user/info/${id}`)
 }
 
-// 数据相关
-const tableData = ref([])
-const total = ref(0)
-const page = ref(1)
-const size = ref(10)
-// 获取数据的方法
+/**
+ * 获取数据的方法
+ */
 const getListData = async () => {
   const result = await getUserManageList({
     page: page.value,
@@ -149,6 +168,14 @@ const handleSizeChange = currentSize => {
 const handleCurrentChange = currentPage => {
   page.value = currentPage
   getListData()
+}
+
+/**
+ * 查看角色的点击事件
+ */
+const onShowRoleClick = (row) => {
+  roleDialogVisible.value = true
+  selectUserId.value = row._id
 }
 
 // 处理导入用户后数据不重新加载的问题
