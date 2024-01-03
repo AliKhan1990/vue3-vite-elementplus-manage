@@ -40,7 +40,7 @@
           <template #default="{ row }">
             <el-button
               type="primary"
-              size="mini"
+              size="small"
               @click="onShowClick(row._id)"
             >
               {{ $t('msg.excel.show') }}
@@ -48,7 +48,7 @@
             <el-button @click="onShowRoleClick(row)" type="info">{{
               $t('msg.excel.showRole')
             }}</el-button>
-            <el-button type="danger" size="mini" @click="onRemoveClick(row)" :disabled="row.role.some(it => { return (it.id == 1 || it.id == 2) })">{{
+            <el-button type="danger" size="small" @click="onRemoveClick(row)" :disabled="row.role.some(it => { return (it.id == 1 || it.id == 2) })">{{
               $t('msg.excel.remove')
             }}</el-button>
           </template>
