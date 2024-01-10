@@ -3,6 +3,7 @@ import user from './modules/user.js'
 import app from './modules/app.js'
 import getters from './getters.js'
 import theme from './modules/theme.js'
+import permission from './modules/permission'
 
 export default createStore({
   state: {
@@ -15,6 +16,7 @@ export default createStore({
   modules: {
     user,
     app,
-    theme
+    theme,
+    permission
   }
 })

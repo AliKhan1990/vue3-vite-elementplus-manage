@@ -45,7 +45,7 @@
             >
               {{ $t('msg.excel.show') }}
             </el-button>`
-            <el-button @click="onShowRoleClick(row)" type="info">{{
+            <el-button size="small" @click="onShowRoleClick(row)" type="info">{{
               $t('msg.excel.showRole')
             }}</el-button>
             <el-button type="danger" size="small" @click="onRemoveClick(row)" :disabled="row.role.some(it => { return (it.id == 1 || it.id == 2) })">{{
